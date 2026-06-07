@@ -32,4 +32,4 @@ This repository is organized into distinct engineering pillars. Click into any d
 ## 📊 Live Deployment Verification
 The following screenshot verifies a successful, live programmatic deployment of the `prod-web-server` compute instance via Terraform within the AWS account console footprint:
 
-![AWS Deployment Success](./aws-deployment-success.png)
+![AWS Deployment Success](./images/aws-deployment-success.png)
