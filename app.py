@@ -4,7 +4,7 @@ import streamlit as st
 st.set_page_config(
     page_title="Shadrick Carr | Engineering Hub", 
     page_icon="💻", 
-    layout="wide"  # Wide mode layout for professional tracking interfaces
+    layout="wide"
 )
 
 # 2. Sidebar Navigation Panel
@@ -69,16 +69,14 @@ elif page == "Cloud Infrastructure":
     st.write("---")
     st.markdown("### 📊 Live Console Deployment Telemetry")
     
-    # Renders the verification screenshot directly from your root images directory
     st.image(
         "images/aws-deployment-success.png", 
         caption="AWS Management EC2 Console verifying successful programmatic deployment of prod-web-server via Terraform.",
-        width=None  # Optimized default width configuration
+        width=None
     )
     
     st.write("\n")
     
-    # Interactive outbound button directly to your repository
     st.link_button(
         "View Source Code & IaC Scripts on GitHub 🚀", 
         "https://github.com/Scarr77/cloud-fundamentals"
@@ -96,7 +94,6 @@ elif page == "Linux Automation":
     server layers and continuously track system metric stability (disk utilization, partition bounds, and core allocation pools).
     """)
     
-    # Renders the raw script code block inside your webpage beautifully
     with st.expander("📝 View Raw Automation Script Source Code"):
         try:
             with open("system_health.sh", "r") as f:
@@ -109,7 +106,6 @@ elif page == "Linux Automation":
     st.markdown("### 📋 Live Engine Analysis Log Output")
     st.write("The window below displays real-time telemetry parses directly from the physical `system_health.log` generated natively:")
 
-    # Read and print out the actual data inside your telemetry log file live
     try:
         with open("system_health.log", "r") as f:
             log_contents = f.read()
@@ -117,9 +113,60 @@ elif page == "Linux Automation":
     except FileNotFoundError:
         st.warning("⚠️ Telemetry engine log not detected yet. Run './system_health.sh' in your terminal to initialize system metrics.")
 
-# 6. PAGE 4: NETWORKING LABS
+# 6. PAGE 4: NETWORKING LABS (Interactive App)
 elif page == "Networking Labs":
     st.title("🎛️ Networking Architecture & Topologies")
-    st.subheader("Cisco Infrastructure Switching & Subnetting Blueprints")
+    st.subheader("Cisco Systems Infrastructure & Algorithmic Subnetting")
     st.write("---")
-    st.write("*(Stay tuned! We will highlight your VLAN mappings, inter-VLAN trunking protocols, and subnet engineering modules here next).*")
+    
+    st.markdown("### Core Concept: Subnetting Engineering & Boundary Calculations")
+    st.write("""
+    In enterprise systems, breaking down IP blocks into precise subnets is critical for security isolation, 
+    broadcast domain containment, and structural routing. Below is an active, programmatic **Subnet Explorer Engine** written in Python to calculate mask metrics instantly.
+    """)
+    
+    st.write("\n")
+    
+    col1, col2 = st.columns([1, 2])
+    
+    with col1:
+        st.markdown("#### ⚡ Subnet Engine Inputs")
+        ip_input = st.text_input("Enter Base Network IP Address:", "192.168.1.0")
+        cidr_select = st.slider("Select CIDR Prefix Slash Notation (/) Mask:", min_value=24, max_value=30, value=24)
+    
+    with col2:
+        st.markdown("#### 📊 Processed Architecture Output")
+        
+        hosts_matrix = {24: 254, 25: 126, 26: 62, 27: 30, 28: 14, 29: 6, 30: 2}
+        mask_matrix = {24: "255.255.255.0", 25: "255.255.255.128", 26: "255.255.255.192", 27: "255.255.255.224", 28: "255.255.255.240", 29: "255.255.255.248", 30: "255.255.255.252"}
+        
+        usable_hosts = hosts_matrix[cidr_select]
+        subnet_mask = mask_matrix[cidr_select]
+        
+        st.metric(label="Calculated Subnet Mask", value=subnet_mask)
+        st.metric(label="Total Usable Host IP Allocations Allowed", value=f"{usable_hosts} addresses")
+        
+    st.write("---")
+    st.markdown("### 🛠️ Cisco CLI Infrastructure Blueprint Reference")
+    st.write("Beyond math, here is a production reference template illustrating how I configure VLAN isolation, 802.1Q trunking links, and Inter-VLAN routing interfaces within standard Cisco IOS CLI architectures:")
+    
+    cisco_snippet = """
+! --- 1. CONFIGURE WORKSTATION VLAN ISOLATION BOUNDARIES ---
+Switch# configure terminal
+Switch(config)# vlan 10
+Switch(config-vlan)# name PROD_WEB_TRAFFIC
+Switch(config-vlan)# exit
+
+! --- 2. MAP PHYSICAL PORTS INTERFACE TO VLAN PERIMETER ---
+Switch(config)# interface fastEthernet 0/5
+Switch(config-if)# switchport mode access
+Switch(config-if)# switchport access vlan 10
+Switch(config-if)# exit
+
+! --- 3. CONFIGURE INTER-SWITCH 802.1Q TRUNKING AGGREGATION ---
+Switch(config)# interface gigabitEthernet 0/1
+Switch(config-if)# switchport mode trunk
+Switch(config-if)# switchport trunk allowed vlan 10,20
+Switch(config-if)# end
+    """
+    st.code(cisco_snippet, language="io")
