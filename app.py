@@ -73,7 +73,7 @@ elif page == "Cloud Infrastructure":
     st.image(
         "images/aws-deployment-success.png", 
         caption="AWS Management EC2 Console verifying successful programmatic deployment of prod-web-server via Terraform.",
-        use_container_width=True
+        width=None  # Optimized default width configuration
     )
     
     st.write("\n")
@@ -89,7 +89,33 @@ elif page == "Linux Automation":
     st.title("🐧 Automated Linux Systems Orchestration")
     st.subheader("Bash Scripting & Core Server Administration Modules")
     st.write("---")
-    st.write("*(Stay tuned! We will map out your custom shell scripts and health monitoring systems logic here next).*")
+    
+    st.markdown("### Core Project: Shell Script System Health Monitor")
+    st.write("""
+    Engineered a production-ready **Bash shell script** (`system_health.sh`) designed to sit on remote 
+    server layers and continuously track system metric stability (disk utilization, partition bounds, and core allocation pools).
+    """)
+    
+    # Renders the raw script code block inside your webpage beautifully
+    with st.expander("📝 View Raw Automation Script Source Code"):
+        try:
+            with open("system_health.sh", "r") as f:
+                script_code = f.read()
+            st.code(script_code, language="bash")
+        except FileNotFoundError:
+            st.error("Could not find system_health.sh file in the project directory.")
+        
+    st.write("\n")
+    st.markdown("### 📋 Live Engine Analysis Log Output")
+    st.write("The window below displays real-time telemetry parses directly from the physical `system_health.log` generated natively:")
+
+    # Read and print out the actual data inside your telemetry log file live
+    try:
+        with open("system_health.log", "r") as f:
+            log_contents = f.read()
+        st.text_area(label="System Log Terminal View", value=log_contents, height=250, label_visibility="collapsed")
+    except FileNotFoundError:
+        st.warning("⚠️ Telemetry engine log not detected yet. Run './system_health.sh' in your terminal to initialize system metrics.")
 
 # 6. PAGE 4: NETWORKING LABS
 elif page == "Networking Labs":
