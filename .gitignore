@@ -3,6 +3,7 @@
 *.tfstate.backup
 .terraform.lock.hcl
 
-# Ignore loose root images, but allow the documentation folder
+# Ignore random loose images, but explicitly allow your documentation asset folders
 *.png
+!images/
 !cloud-infrastructure/images/
