@@ -28,3 +28,8 @@ This repository is organized into distinct engineering pillars. Click into any d
 * **Infrastructure as Code / Cloud:** Terraform, Amazon Web Services (AWS)
 * **Networking Standards:** TCP/IP, Cisco IOS CLI, Subnetting/VLSM, VLANs
 * **Scripting / Development:** Bash Shell Scripting, Python, Git/GitHub, Cursor AI
+
+## 📊 Live Deployment Verification
+The following screenshot verifies a successful, live programmatic deployment of the `prod-web-server` compute instance via Terraform within the AWS account console footprint:
+
+![AWS Deployment Success](./aws-deployment-success.png)
